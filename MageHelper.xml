@@ -1,0 +1,85 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Frame name="MageHelper" hidden="true" parent="UIParent" toplevel="true" movable="true">
+		<Size>
+			<AbsDimension x="560" y="225" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="100" y="-150" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="KeywordsText" inherits="GameFontNormal" text="Keywords (space seperated)">
+					<Size x="187" y="20" />
+					<Anchors>
+						<Anchor point="TOPLEFT" x="51" y="-83" />
+					</Anchors>
+				</FontString>
+				<FontString name="AutoWhisperText" inherits="GameFontNormal" text="Auto whisper">
+					<Size x="80" y="20" />
+					<Anchors>
+						<Anchor point="TOPLEFT" x="51" y="-116" />
+					</Anchors>
+				</FontString>
+				<FontString name="Headline" inherits="GameFontNormal" text="Mage Helper">
+					<Size x="426" y="20" />
+					<Anchors>
+						<Anchor point="TOPLEFT" x="73" y="-34" />
+					</Anchors>
+					<FontHeight val="12" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="Keywords" inherits="InputBoxTemplate">
+				<Size x="255" y="46" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="244" y="-71" />
+				</Anchors>
+			</EditBox>
+			<EditBox name="AutoWhisper" inherits="InputBoxTemplate">
+				<Size x="255" y="32" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="244" y="-111" />
+				</Anchors>
+			</EditBox>
+			<Button inherits="UIPanelButtonTemplate" text="OK">
+				<Size x="75" y="23" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="244" y="-173" />
+				</Anchors>
+				<Scripts>
+					<OnClick>MageHelper_Save()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self:RegisterForDrag("LeftButton");
+				tinsert(UISpecialFrames, self:GetName());
+				Keywords:SetScript("OnEscapePressed", function(self)
+					self:GetParent():Hide()
+				end);
+				AutoWhisper:SetScript("OnEscapePressed", function(self)
+					self:GetParent():Hide()
+				end);
+			</OnLoad>
+			<OnDragStart>self:StartMoving();</OnDragStart>
+			<OnDragStop>self:StopMovingOrSizing();</OnDragStop>
+		</Scripts>
+	</Frame>
+</Ui>

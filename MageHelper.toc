@@ -1,0 +1,8 @@
+## Interface: 11302
+## Title: MageHelper
+## Author: Maui
+## Notes: helps to get an easier mage life :P
+## SavedVariables: MageHelper_Keywords MageHelper_Whisper
+## Version: 1.0
+MageHelper.lua
+MageHelper.xml
